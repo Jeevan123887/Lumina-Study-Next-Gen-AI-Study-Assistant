@@ -84,6 +84,6 @@ http://127.0.0.1:8000
 
 ## 🤖 Gemma 4 Integration Details
 
-Lumina Study is designed around the developer-focused instruction-tuned **Gemma 4 31B Dense model** (`gemma-4-31b-it`). 
+Lumina Study is designed around the developer-focused instruction-tuned **Gemma 4 31B Dense model** (`gemma-4-31b-it`).
 - **System fallback**: In environments where the Gemma 4 API configuration is pending, the backend gracefully falls back to `gemini-1.5-flash` to ensure uninterrupted service.
 - **Context Handling**: Ingests up to 100k characters of context per request, leveraging Gemma 4's high capacity to process detailed books, study guides, and slide decks.
