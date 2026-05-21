@@ -1,4 +1,4 @@
-
+<img width="1880" height="890" alt="Image" src="https://github.com/user-attachments/assets/9e7333e4-20c8-40fc-8f22-add456fc05af" />
 
 # Lumina Study 🧠✨
 > Next-Generation AI-powered Study Assistant powered by **Gemma 4**.
