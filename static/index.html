@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Study - Powered by Gemma 4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    
+    <div id="scene">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="hero-content float-animation">
+                <div class="icon-3d"><i class="fa-solid fa-brain"></i></div>
+                <h1 class="title-3d">Lumina</h1>
+                <p class="subtitle">Next-Gen AI Study Assistant</p>
+                <button class="btn btn-primary btn-3d" onclick="showScreen('login-screen')">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Auth Screen -->
+        <div id="login-screen" class="screen">
+            <div class="glass-panel login-card float-animation-delayed" id="auth-container">
+                <!-- Login Form -->
+                <div id="form-login" class="auth-form active">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your details to access Lumina</p>
+                    <form onsubmit="handleAuth(event, 'login')">
+                        <div class="input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-3d btn-block">Login</button>
+                    </form>
+                    <div class="auth-links">
+                        <a href="#" onclick="toggleAuthForm('forgot'); return false;">Forgot Password?</a>
+                        <p>Don't have an account? <a href="#" onclick="toggleAuthForm('register'); return false;">Create one</a></p>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div id="form-register" class="auth-form" style="display: none;">
+                    <h2>Create Account</h2>
+                    <p>Join Lumina to supercharge your study</p>
+                    <form onsubmit="handleAuth(event, 'register')">
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-3d btn-block">Sign Up</button>
+                    </form>
+                    <div class="auth-links">
+                        <p>Already have an account? <a href="#" onclick="toggleAuthForm('login'); return false;">Login</a></p>
+                    </div>
+                </div>
+
+                <!-- Forgot Password Form -->
+                <div id="form-forgot" class="auth-form" style="display: none;">
+                    <h2>Reset Password</h2>
+                    <p>Enter your email to receive a reset link</p>
+                    <form onsubmit="handleAuth(event, 'forgot')">
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-3d btn-block">Send Link</button>
+                    </form>
+                    <div class="auth-links">
+                        <p>Remembered? <a href="#" onclick="toggleAuthForm('login'); return false;">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Screen -->
+        <div id="main-screen" class="screen container">
+            <header>
+                <div class="logo">
+                    <i class="fa-solid fa-brain"></i>
+                    <h1>Lumina Study</h1>
+                </div>
+                <div class="badge">Gemma 4 Powered</div>
+            </header>
+
+            <main>
+                <div class="sidebar">
+                    <div class="glass-panel upload-section card-3d">
+                        <h2><i class="fa-solid fa-file-pdf"></i> Upload Material</h2>
+                        <p>Upload a PDF or TXT to get started</p>
+                        <input type="file" id="file-upload" accept=".pdf,.txt" hidden>
+                        <label for="file-upload" class="btn btn-upload btn-3d">
+                            Choose File
+                        </label>
+                        <div id="file-name" class="file-name"></div>
+                    </div>
+                    
+                    <div class="glass-panel actions-section card-3d" id="actions-section" style="opacity: 0.5; pointer-events: none;">
+                        <h2><i class="fa-solid fa-bolt"></i> Quick Actions</h2>
+                        <button class="btn btn-action btn-3d" onclick="generateSummary()"><i class="fa-solid fa-list"></i> Summarize</button>
+                        <button class="btn btn-action btn-3d" onclick="generateQuiz()"><i class="fa-solid fa-question-circle"></i> Generate Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chat-area glass-panel card-3d">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message system">
+                            <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                            <div class="content">Hello! I'm Lumina, your advanced study assistant powered by the Gemma 4 model. Upload your study material and let's start learning!</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask a question about your material..." disabled>
+                        <button class="btn btn-send btn-3d" id="send-btn" onclick="sendMessage()" disabled><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
