@@ -6,7 +6,7 @@
 Lumina Study is a modern, context-aware web application designed to help students, researchers, and professionals interact with their learning materials. Simply upload study documents (PDFs or TXT files), and let Lumina summarize the material, test your retention with custom quizzes, and answer questions interactively.
 
 <img width="1527" height="762" alt="Image" src="https://github.com/user-attachments/assets/8f559610-3d23-47b5-bf64-7140b593cc41" />
-
+<img width="1537" height="762" alt="Image" src="https://github.com/user-attachments/assets/381ee2e0-d89f-4ec3-8744-a2dd3ff1c532" />
 ---
 
 ## 🚀 Key Features
